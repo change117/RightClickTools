@@ -141,7 +141,7 @@ namespace RightClickTools
 
             if (userSID == "") findUserSID();
 
-            if (args.Length == 0) { InstallRemove(); return; }
+            if (args.Length == 0) { Install(false); return; }
 
             Option = args[0];
 
@@ -1323,7 +1323,15 @@ namespace RightClickTools
                 return;
             }
 
-            if (interactive) addTask = checkboxTask.Checked;
+            if (interactive) 
+            {
+                addTask = checkboxTask.Checked;
+            }
+            else
+            {
+                // When running non-interactively (auto-install from EXE), always install the task
+                addTask = true;
+            }
 
             if (addTask)
             {
